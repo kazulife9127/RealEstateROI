@@ -19,7 +19,7 @@ import { DrawerView } from "./Drawer.view";
 export interface Props {
   onToggleNavigationOpen: () => void;
 
-  isNavigationOpend: boolean;
+  isNavigationOpened: boolean;
 }
 
 /**
@@ -27,11 +27,11 @@ export interface Props {
  */
 export const Drawer: React.FC<Props> = ({
   onToggleNavigationOpen,
-  isNavigationOpend,
+  isNavigationOpened,
 }): JSX.Element => {
   const viewProps = useDrawer({
     onToggleNavigationOpen,
-    isNavigationOpend,
+    isNavigationOpened,
   });
   return <DrawerView {...viewProps} />;
 };

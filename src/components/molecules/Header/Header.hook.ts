@@ -18,7 +18,7 @@ import { type Props as ViewProps } from "./Header.view";
  */
 export interface Params {
   onToggleNavigationOpen: () => void;
-  isNavigationOpend: boolean;
+  isNavigationOpened: boolean;
 }
 
 /**
@@ -26,7 +26,7 @@ export interface Params {
  * @package
  */
 export const useHeader = ({
-  isNavigationOpend,
+  isNavigationOpened,
   onToggleNavigationOpen,
 }: Params): ViewProps => {
   const handleToggleNavigationButtonClick = useCallback(
@@ -37,7 +37,7 @@ export const useHeader = ({
   );
 
   return {
-    isNavigationOpend,
+    isNavigationOpened,
     onNavigationButtonClick: handleToggleNavigationButtonClick,
   };
 };

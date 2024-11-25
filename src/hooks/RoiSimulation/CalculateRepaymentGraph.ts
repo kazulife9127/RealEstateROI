@@ -10,8 +10,8 @@ import {
     calculateAnnualExpenses,
     calculateMonthlyNetIncome,
     calculateAnnualNetIncome,
-    calculateInvestmentYield,
-    calculateInvestmentYieldMonthly
+    // calculateInvestmentYield,
+    // calculateInvestmentYieldMonthly
 } from './CalculationUtils';
 
 /**
@@ -35,8 +35,8 @@ export const CalculateRepaymentGraph = (
     const totalMonthlyExpenses = calculateMonthlyExpenses(monthlyRentIncome, data.vacancyRate, data.expenseRate);
 
     // 物件価格（円）と自己資金（円）を計算
-    const propertyPrice = data.propertyPrice * 10000;
-    const ownCapital = data.ownCapital * 10000;
+    // const propertyPrice = data.propertyPrice * 10000;
+    // const ownCapital = data.ownCapital * 10000;
 
     // 月次返済スケジュールを取得
     const repaymentSchedule = CalculateRepaymentSchedule(data);
@@ -69,7 +69,7 @@ export const CalculateRepaymentGraph = (
             const annualNetIncome = calculateAnnualNetIncome(annualRentIncome, annualExpenses);
 
             // 投資利回りを計算
-            const investmentYield = calculateInvestmentYield(annualNetIncome, ownCapital);
+            // const investmentYield = calculateInvestmentYield(annualNetIncome, ownCapital);
 
             // 結果を格納
             timeSeries.push({
@@ -108,7 +108,7 @@ export const CalculateRepaymentGraph = (
             const monthlyNetIncome = calculateMonthlyNetIncome(monthlyRentIncome, monthlyExpenses);
 
             // 投資利回り（月次）を計算
-            const investmentYield = calculateInvestmentYieldMonthly(monthlyNetIncome, ownCapital);
+            // const investmentYield = calculateInvestmentYieldMonthly(monthlyNetIncome, ownCapital);
 
             // 結果を格納
             timeSeries.push({

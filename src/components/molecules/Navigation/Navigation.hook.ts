@@ -24,14 +24,14 @@ export interface Params {
   /**
    * Navigation開閉
    */
-  isNavigationOpend: boolean;
+  isNavigationOpened: boolean;
 }
 
 /**
  * Navigation Hooks
  * @package
  */
-export const useNavigation = ({ isNavigationOpend }: Params): ViewProps => {
+export const useNavigation = ({ isNavigationOpened }: Params): ViewProps => {
   const { pathname } = useLocation();
 
   const navigationItemList = useMemo((): ItemProps[] => {
@@ -41,14 +41,14 @@ export const useNavigation = ({ isNavigationOpend }: Params): ViewProps => {
         Icon: MoneyIcon,
         children: "ROI Simulation",
         selected: pathname.startsWith("/roi-simulation"),
-        tooltipTitle: isNavigationOpend ? "" : "ROI Simulation",
+        tooltipTitle: isNavigationOpened ? "" : "ROI Simulation",
       },
       {
         toUri: "/value-map",
         Icon: MapIcon,
         children: "Value Map",
         selected: pathname.startsWith("/value-map"),
-        tooltipTitle: isNavigationOpend ? "" : "Value Map",
+        tooltipTitle: isNavigationOpened ? "" : "Value Map",
         disabled: true,
       },
       {
@@ -56,10 +56,10 @@ export const useNavigation = ({ isNavigationOpend }: Params): ViewProps => {
         Icon: TableViewIcon,
         children: "Spreadsheet",
         selected: pathname.startsWith("/spreadsheet"),
-        tooltipTitle: isNavigationOpend ? "" : "Spreadsheet",
+        tooltipTitle: isNavigationOpened ? "" : "Spreadsheet",
       },
     ];
-  }, [isNavigationOpend, pathname]);
+  }, [isNavigationOpened, pathname]);
 
   return {
     navigationItemList,

@@ -23,22 +23,22 @@ export interface Props {
     event: React.MouseEvent<HTMLButtonElement, MouseEvent>
   ) => void;
 
-  isNavigationOpend: boolean;
+  isNavigationOpened: boolean;
 }
 
 export const DrawerView: React.FC<Props> = ({
   onNavigationButtonClick,
-  isNavigationOpend,
+  isNavigationOpened,
 }): JSX.Element => {
   return (
-    <Drawer variant="persistent" anchor="left" open={isNavigationOpend}>
+    <Drawer variant="persistent" anchor="left" open={isNavigationOpened}>
       <HeaderPadding>
         <IconButton onClick={onNavigationButtonClick}>
           <ChevronLeftIcon />
         </IconButton>
       </HeaderPadding>
       <Divider />
-      <Navigation isNavigationOpend={isNavigationOpend} />
+      <Navigation isNavigationOpened={isNavigationOpened} />
     </Drawer>
   );
 };

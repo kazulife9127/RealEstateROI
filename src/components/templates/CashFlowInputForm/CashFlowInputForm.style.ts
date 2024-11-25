@@ -43,7 +43,7 @@ export const ButtonStyled = styled(Button)(({ theme }) => ({
     marginTop: theme.spacing(2), 
 }));
 
-export const MenuItemStyled = styled(MenuItem)(({ theme }) => ({
+export const MenuItemStyled = styled(MenuItem)(({  }) => ({
 }));
 
 

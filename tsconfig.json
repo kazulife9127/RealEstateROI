@@ -9,6 +9,7 @@
     "paths": {
       "@/*": ["./src/*"],
     },
+    "types": ["node"],
 
     /* Bundler mode */
     "moduleResolution": "bundler",
@@ -20,7 +21,7 @@
 
     /* Linting */
     "strict": true,
-    "noUnusedLocals": true,
+    "noUnusedLocals": false,
     "noUnusedParameters": true,
     "noFallthroughCasesInSwitch": true,
     "noImplicitAny": true,

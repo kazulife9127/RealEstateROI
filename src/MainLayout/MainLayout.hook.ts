@@ -18,7 +18,7 @@ import { type Props as ViewProps } from "./MainLayout.view";
  * @package
  */
 export const useMainLayout = (): ViewProps => {
-  const [isNavigationOpend, setIsNavigationOpend] = useState<boolean>(false);
+  const [isNavigationOpened, setIsNavigationOpened] = useState<boolean>(false);
   const location = useLocation();
   const isFirstRender = useRef<boolean>(true);
 
@@ -27,17 +27,17 @@ export const useMainLayout = (): ViewProps => {
       isFirstRender.current = false;
       return;
     }
-    setIsNavigationOpend(false);
+    setIsNavigationOpened(false);
   }, [location]);
 
   const handleToggleNavigationOpen = useCallback((): void => {
-    setIsNavigationOpend((prev: boolean): boolean => {
+    setIsNavigationOpened((prev: boolean): boolean => {
       return !prev;
     });
   }, []);
 
   return {
-    isNavigationOpend,
+    isNavigationOpened,
     onToggleNavigationOpen: handleToggleNavigationOpen,
   };
 };

@@ -27,9 +27,9 @@ export type Props = {
     handleChange: (field: keyof Props['data'], value: number 
         | '' 
         | 'equalPrincipalAndInterest' 
-        | 'equalPrincipal'
-    ) => void;    handleReset: () => void;
-    handleSimulation: () => void;
+    ) => void;    
+    handleReset: () => void;
+    //handleSimulation: () => void;
 }
 
 export const CashFlowInputFormView: React.FC<Props> = ({

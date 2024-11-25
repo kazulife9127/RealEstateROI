@@ -23,15 +23,15 @@ export interface Props {
   /**
    * Navigation開閉
    */
-  isNavigationOpend: boolean;
+  isNavigationOpened: boolean;
 }
 
 /**
  * Navigation Component
  */
 export const Navigation: React.FC<Props> = memo(
-  ({ isNavigationOpend }: Props): JSX.Element => {
-    const viewProps = useNavigation({ isNavigationOpend });
+  ({ isNavigationOpened }: Props): JSX.Element => {
+    const viewProps = useNavigation({ isNavigationOpened });
     return <NavigationView {...viewProps} />;
   }
 );
