@@ -19,7 +19,7 @@ import { Outlet } from "react-router-dom";
  * Props
  */
 export interface Props {
-  isNavigationOpend: boolean;
+  isNavigationOpened: boolean;
   onToggleNavigationOpen: () => void;
 }
 
@@ -27,7 +27,7 @@ export interface Props {
  * MainLayout View Component
  */
 export const MainLayoutView: React.FC<Props> = ({
-  isNavigationOpend,
+  isNavigationOpened,
   onToggleNavigationOpen,
 }): JSX.Element => {
   return (
@@ -35,13 +35,13 @@ export const MainLayoutView: React.FC<Props> = ({
       <CssBaseline />
       <Header
         onToggleNavigationOpen={onToggleNavigationOpen}
-        isNavigationOpend={isNavigationOpend}
+        isNavigationOpened={isNavigationOpened}
       />
       <Drawer
         onToggleNavigationOpen={onToggleNavigationOpen}
-        isNavigationOpend={isNavigationOpend}
+        isNavigationOpened={isNavigationOpened}
       />
-      <MainStyled open={isNavigationOpend}>
+      <MainStyled open={isNavigationOpened}>
         <Outlet />
       </MainStyled>
     </Root>

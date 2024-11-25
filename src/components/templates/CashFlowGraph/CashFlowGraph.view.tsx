@@ -63,7 +63,7 @@ export const CashFlowGraphView: React.FC<CashFlowGraphProps> = ({
                 {/* Sliderを表示 */}
                 <SliderStyled
                     value={selectedValue}
-                    onChange={(event, value) => handleValueChange(value as number)}
+                    onChange={(_event, value) => handleValueChange(value as number)}
                     valueLabelDisplay="auto"
                     {...sliderProps}
                 />

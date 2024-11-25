@@ -19,7 +19,7 @@ import { HeaderView } from "./Header.view";
 export interface Props {
   children?: never;
   onToggleNavigationOpen: () => void;
-  isNavigationOpend: boolean;
+  isNavigationOpened: boolean;
 }
 
 /**
@@ -27,11 +27,11 @@ export interface Props {
  */
 export const Header: React.FC<Props> = ({
   onToggleNavigationOpen,
-  isNavigationOpend,
+  isNavigationOpened,
 }): JSX.Element => {
   const viewProps = useHeader({
     onToggleNavigationOpen,
-    isNavigationOpend,
+    isNavigationOpened,
   });
   return <HeaderView {...viewProps} />;
 };

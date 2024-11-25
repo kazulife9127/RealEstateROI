@@ -26,25 +26,25 @@ export interface Props {
     event: React.MouseEvent<HTMLButtonElement, MouseEvent>
   ) => void;
 
-  isNavigationOpend: boolean;
+  isNavigationOpened: boolean;
 }
 
 /**
  * Header View Component
  */
 export const HeaderView: React.FC<Props> = ({
-  isNavigationOpend,
+  isNavigationOpened,
   onNavigationButtonClick,
 }): JSX.Element => {
   return (
-    <AppBarStyled position="sticky" open={isNavigationOpend}>
+    <AppBarStyled position="sticky" open={isNavigationOpened}>
       <ToolbarStyled variant="dense">
         <MenuButtonStyled
           edge="start"
           color="inherit"
           aria-label="open drawer"
           onClick={onNavigationButtonClick}
-          sx={{ mr: 2, ...(isNavigationOpend && { display: "none" }) }}
+          sx={{ mr: 2, ...(isNavigationOpened && { display: "none" }) }}
         >
           <MenuIcon />
         </MenuButtonStyled>

@@ -19,7 +19,7 @@ import { type Props as ViewProps } from "./Drawer.view";
  */
 export interface Params {
   onToggleNavigationOpen: () => void;
-  isNavigationOpend: boolean;
+  isNavigationOpened: boolean;
 }
 
 /**
@@ -27,7 +27,7 @@ export interface Params {
  * @package
  */
 export const useDrawer = ({
-  isNavigationOpend,
+  isNavigationOpened,
   onToggleNavigationOpen,
 }: Params): ViewProps => {
   const handleNavigationButtonClick = useCallback(
@@ -38,7 +38,7 @@ export const useDrawer = ({
   );
 
   return {
-    isNavigationOpend,
+    isNavigationOpened,
     onNavigationButtonClick: handleNavigationButtonClick,
   };
 };

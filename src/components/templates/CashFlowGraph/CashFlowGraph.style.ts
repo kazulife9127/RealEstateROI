@@ -22,14 +22,14 @@ export const NoteTypographyStyled = styled(Typography)(({ theme }) => ({
     color: theme.palette.text.secondary,
 }));
 
-export const SliderStyled = styled(Slider)(({ theme }) => ({
+export const SliderStyled = styled(Slider)(({  }) => ({
 }));
 
-export const MenuItemStyled = styled(MenuItem)(({ theme }) => ({
+export const MenuItemStyled = styled(MenuItem)(({  }) => ({
 }));
 
-export const StackStyled = styled(Stack)(({ theme }) => ({
+export const StackStyled = styled(Stack)(({  }) => ({
 }));
 
-export const TextFieldStyled = styled(TextField)(({ theme }) => ({
+export const TextFieldStyled = styled(TextField)(({  }) => ({
 }));

@@ -11,8 +11,8 @@ export const useCashFlowInputForm = () => {
     const { data, setData, resetData } = context;
 
     const handleChange = (field: keyof CashFlowInputData, value: number 
-        | ''  
-        | 'equalPrincipal') => {
+        | ''
+        | 'equalPrincipalAndInterest') => {
         setData(prev => ({ ...prev, [field]: value }));
     }
 
@@ -20,15 +20,15 @@ export const useCashFlowInputForm = () => {
         resetData();
     }
 
-    const handleSimulation = () => {
-        console.log(data);
-    }
+    // const handleSimulation = () => {
+    //     console.log(data);
+    // }
 
     return {
         data,
         handleChange,
         handleReset,
-        handleSimulation
+        //handleSimulation
     }
     
 }
