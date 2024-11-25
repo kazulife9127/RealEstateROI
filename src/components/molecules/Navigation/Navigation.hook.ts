@@ -57,6 +57,7 @@ export const useNavigation = ({ isNavigationOpened }: Params): ViewProps => {
         children: "Spreadsheet",
         selected: pathname.startsWith("/spreadsheet"),
         tooltipTitle: isNavigationOpened ? "" : "Spreadsheet",
+        disabled: true,
       },
     ];
   }, [isNavigationOpened, pathname]);

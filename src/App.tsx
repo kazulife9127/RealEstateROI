@@ -9,6 +9,7 @@ const App: React.FC = () => {
     <BrowserRouter>
         <Routes>
             <Route path="/" element={<MainLayout />}>
+              <Route index element={<RoiSimulation />} />
               <Route path="/roi-simulation" element={<RoiSimulation />} />
             </Route>
         </Routes>
