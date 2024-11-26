@@ -32,7 +32,10 @@ export const BoxStyled = styled(Box)(({ theme }) => ({
     marginBottom: theme.spacing(2),
 }));
 
-export const SubTitleStyled = styled(Typography)(({  }) => ({
-    fontSize: "20px",
+export const SubTitleStyled = styled(Typography)({
+    fontSize: "25px",
+    fontWeight: "350",
+    height: "50px",
     marginLeft: "15px",
-}));
+    marginTop: "5px",
+  });
