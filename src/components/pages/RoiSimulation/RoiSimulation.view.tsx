@@ -22,17 +22,17 @@ export const RoiSimulationView: React.FC<Props> = () => {
           <MainTitleStyled variant='h2'>ROI Simulation</MainTitleStyled>
           <BoxStyled sx={{ flexGrow: 1, padding: 2 }}>
             <GridStyled container spacing={2}>
-              <LeftGridStyled size={{ lg: 6}}>
+              <LeftGridStyled size={{ xs: 12, md: 6, sm: 12}}>
                 <BoxStyled>
                   <CashFlowInputForm/>
                </BoxStyled> 
               </LeftGridStyled>
-              <RightGridStyled size={{ lg: 6}}>
+              <RightGridStyled size={{ xs: 12, md: 6, sm: 12}}>
                 <BoxStyled>
                     <CashFlowResult/>
                 </BoxStyled>
               </RightGridStyled>
-              <UnderGridStyled size={{ lg: 12}}>
+              <UnderGridStyled size={{ xs: 12}}>
                 <BoxStyled>
                     <CashFlowGraph/>
                 </BoxStyled>
