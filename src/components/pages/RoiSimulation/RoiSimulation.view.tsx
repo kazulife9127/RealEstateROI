@@ -6,11 +6,12 @@ import { CashFlowGraph } from '@/components/templates/CashFlowGraph';
 
 import { MainTitleStyled } from '@/components/atoms/MainTitle';
 import {
-    GridStyled,
-    LeftGridStyled,
-    RightGridStyled,
-    BoxStyled,
-    UnderGridStyled
+  GridStyled,
+  LeftGridStyled,
+  RightGridStyled,
+  BoxStyled,
+  UnderGridStyled,
+  SubTitleStyled
 } from "./RoiSimulation.style";
 
 export type Props = {
@@ -20,6 +21,7 @@ export const RoiSimulationView: React.FC<Props> = () => {
     return (
         <>
           <MainTitleStyled variant='h2'>ROI Simulation</MainTitleStyled>
+          <SubTitleStyled variant='h3'>不動産投資のシュミレーション・グラフ表示ができます。</SubTitleStyled>
           <BoxStyled sx={{ flexGrow: 1, padding: 2 }}>
             <GridStyled container spacing={2}>
               <LeftGridStyled size={{ xs: 12, md: 6, sm: 12}}>
