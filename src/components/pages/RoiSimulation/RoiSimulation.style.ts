@@ -2,6 +2,7 @@ import { styled } from '@mui/material/styles';
 import {
   Grid2,
   Box,
+  Typography
 } from "@mui/material";
 
 export const GridStyled = styled(Grid2)(({}) => ({
@@ -29,4 +30,9 @@ export const UnderGridStyled = styled(Grid2)(({ theme }) => ({
 
 export const BoxStyled = styled(Box)(({ theme }) => ({
     marginBottom: theme.spacing(2),
+}));
+
+export const SubTitleStyled = styled(Typography)(({  }) => ({
+    fontSize: "20px",
+    marginLeft: "15px",
 }));
