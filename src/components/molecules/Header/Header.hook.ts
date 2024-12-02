@@ -36,6 +36,7 @@ export const useHeader = ({
     [onToggleNavigationOpen]
   );
 
+
   return {
     isNavigationOpened,
     onNavigationButtonClick: handleToggleNavigationButtonClick,
