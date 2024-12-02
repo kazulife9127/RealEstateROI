@@ -7,6 +7,8 @@ export type Props = {
 }
 
 export const SpreadsheetView: React.FC<Props> = () => {
+  
+  
     return (
         <>
           <MainTitleStyled variant='h2'>Spreadsheet</MainTitleStyled>

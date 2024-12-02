@@ -18,3 +18,4 @@ export const useAuthButton = (): ViewProps => {
     onCloseAuth,
   };
 };
+
