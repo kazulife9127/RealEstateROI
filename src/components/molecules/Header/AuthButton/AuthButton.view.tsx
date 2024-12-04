@@ -1,45 +1,18 @@
+// src/components/AuthButton.view.tsx
 import React from 'react';
-import { Authenticator } from '@aws-amplify/ui-react';
 import { AccountButtonStyled } from './AuthButton.style';
 import AccountCircleIcon from '@mui/icons-material/AccountCircle';
-import { Dialog } from '@mui/material';
-import '@aws-amplify/ui-react/styles.css';
 
-export interface Props {
-  onAccountButtonClick: (
-    event: React.MouseEvent<HTMLButtonElement, MouseEvent>
-  ) => void;
-  showAuth: boolean;
-  onCloseAuth: () => void;
+export interface AuthButtonViewProps {
+  onAccountButtonClick: (event: React.MouseEvent<HTMLButtonElement, MouseEvent>) => void;
 }
 
-export const AuthButtonView: React.FC<Props> = ({
+export const AuthButtonView: React.FC<AuthButtonViewProps> = ({
   onAccountButtonClick,
-  showAuth,
-  onCloseAuth,
 }): JSX.Element => {
   return (
-    <>
-      <AccountButtonStyled onClick={onAccountButtonClick}>
-        <AccountCircleIcon />
-      </AccountButtonStyled>
-      <Dialog open={showAuth} onClose={onCloseAuth} fullWidth maxWidth="sm">
-        <Authenticator>
-          {({ signOut, user }) => (
-            <div style={{ padding: '20px' }}>
-              <h1>こんにちは、{user?.username}さん</h1>
-              <button
-                onClick={() => {
-                  signOut?.();
-                  onCloseAuth();
-                }}
-              >
-                サインアウト
-              </button>
-            </div>
-          )}
-        </Authenticator>
-      </Dialog>
-    </>
+    <AccountButtonStyled onClick={onAccountButtonClick}>
+      <AccountCircleIcon />
+    </AccountButtonStyled>
   );
 };

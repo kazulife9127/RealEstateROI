@@ -1,21 +1,14 @@
-import { useState } from 'react';
-import { Props as ViewProps } from './AuthButton.view';
+// src/components/AuthButton.hook.ts
+import { useAuth } from '@/hooks/Auth/AuthContext';
 
-export const useAuthButton = (): ViewProps => {
-  const [showAuth, setShowAuth] = useState(false);
+export const useAuthButton = () => {
+  const { showAuthDialog } = useAuth();
 
   const onAccountButtonClick = () => {
-    setShowAuth(true);
-  };
-
-  const onCloseAuth = () => {
-    setShowAuth(false);
+    showAuthDialog();
   };
 
   return {
     onAccountButtonClick,
-    showAuth,
-    onCloseAuth,
   };
 };
-
