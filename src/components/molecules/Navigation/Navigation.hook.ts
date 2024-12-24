@@ -50,14 +50,13 @@ export const useNavigation = ({ isNavigationOpened }: Params): ViewProps => {
         selected: pathname.startsWith("/value-map"),
         tooltipTitle: isNavigationOpened ? "" : "Value Map",
         disabled: true,
-      },
+        },
       {
         toUri: "/spreadsheet",
         Icon: TableViewIcon,
         children: "Spreadsheet",
         selected: pathname.startsWith("/spreadsheet"),
         tooltipTitle: isNavigationOpened ? "" : "Spreadsheet",
-        disabled: true,
       },
     ];
   }, [isNavigationOpened, pathname]);

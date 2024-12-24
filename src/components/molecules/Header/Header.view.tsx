@@ -3,6 +3,7 @@
  */
 import React from "react";
 import { Menu as MenuIcon } from "@mui/icons-material";
+import { AuthButton } from "./AuthButton";
 
 /**
  * project modules
@@ -10,7 +11,7 @@ import { Menu as MenuIcon } from "@mui/icons-material";
 
 /**
  * private modules
- */
+ */4
 import {
   AppBarStyled,
   ToolbarStyled,
@@ -25,7 +26,6 @@ export interface Props {
   onNavigationButtonClick: (
     event: React.MouseEvent<HTMLButtonElement, MouseEvent>
   ) => void;
-
   isNavigationOpened: boolean;
 }
 
@@ -36,6 +36,7 @@ export const HeaderView: React.FC<Props> = ({
   isNavigationOpened,
   onNavigationButtonClick,
 }): JSX.Element => {
+
   return (
     <AppBarStyled position="sticky" open={isNavigationOpened}>
       <ToolbarStyled variant="dense">
@@ -49,8 +50,9 @@ export const HeaderView: React.FC<Props> = ({
           <MenuIcon />
         </MenuButtonStyled>
         <TitleStyled textAlign="left" variant="h6">
-          不動産投資シュミレーター
+          不動産投資収益率 シュミレーション
         </TitleStyled>
+        <AuthButton/>
       </ToolbarStyled>
     </AppBarStyled>
   );
