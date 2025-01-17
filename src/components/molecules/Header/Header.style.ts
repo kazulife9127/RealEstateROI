@@ -15,6 +15,7 @@ export const ToolbarStyled = styled(Toolbar)(() => ({
 export const MenuButtonStyled = styled(IconButton)(() => ({
   marginRight: 36,
 }));
+
 export const TitleStyled = styled(Typography)(() => ({
   component: "h1",
   variants: "h6",
