@@ -38,7 +38,7 @@ export const CashFlowResultView: React.FC<Props> = ({
                 </Grid2Styled>
                 <Grid2Styled size={{ lg: 3 }}>
                     <ResultTypographyStyled variant="body2">
-                        {formatCurrency(result.monthlyRepayment)}
+                        {formatCurrency(result.monthlyRepayment)}円
                     </ResultTypographyStyled>
                 </Grid2Styled>
                 <Grid2Styled size={{ lg: 6 }}>
@@ -55,7 +55,7 @@ export const CashFlowResultView: React.FC<Props> = ({
                 </Grid2Styled>
                 <Grid2Styled size={{ lg: 3 }}>
                     <ResultTypographyStyled variant="body2">
-                        {formatCurrency(result.annualRepayment)}
+                        {formatCurrency(result.annualRepayment)}円
                     </ResultTypographyStyled>
                 </Grid2Styled>
                 <Grid2Styled size={{ lg: 6 }}>
@@ -72,7 +72,7 @@ export const CashFlowResultView: React.FC<Props> = ({
                 </Grid2Styled>
                 <Grid2Styled size={{ lg: 3 }}>
                     <ResultTypographyStyled variant="body2">
-                        {formatCurrency(result.totalRepayment)}
+                        {formatCurrency(result.totalRepayment)}円
                     </ResultTypographyStyled>
                 </Grid2Styled>
                 <Grid2Styled size={{ lg: 6 }}>
@@ -89,7 +89,7 @@ export const CashFlowResultView: React.FC<Props> = ({
                 </Grid2Styled>
                 <Grid2Styled size={{ lg: 3 }}>
                     <ResultTypographyStyled variant="body2">
-                        {formatCurrency(result.annualRentIncome)}
+                        {formatCurrency(result.annualRentIncome)}円
                     </ResultTypographyStyled>
                 </Grid2Styled>
                 <Grid2Styled size={{ lg: 6 }}>
@@ -106,7 +106,7 @@ export const CashFlowResultView: React.FC<Props> = ({
                 </Grid2Styled>
                 <Grid2Styled size={{ lg: 3 }}>
                     <ResultTypographyStyled variant="body2">
-                        {formatCurrency(result.totalExpenses)}
+                        {formatCurrency(result.totalExpenses)}円
                     </ResultTypographyStyled>
                 </Grid2Styled>
                 <Grid2Styled size={{ lg: 6 }}>
@@ -123,7 +123,7 @@ export const CashFlowResultView: React.FC<Props> = ({
                 </Grid2Styled>
                 <Grid2Styled size={{ lg: 3 }}>
                     <ResultTypographyStyled variant="body2">
-                        {formatCurrency(result.annualExpenses)}
+                        {formatCurrency(result.annualExpenses)}円
                     </ResultTypographyStyled>
                 </Grid2Styled>
                 <Grid2Styled size={{ lg: 6 }}>
@@ -140,7 +140,7 @@ export const CashFlowResultView: React.FC<Props> = ({
                 </Grid2Styled>
                 <Grid2Styled size={{ lg: 3 }}>
                     <ResultTypographyStyled variant="body2">
-                        {formatCurrency(result.annualNetIncome)}
+                        {formatCurrency(result.annualNetIncome)}円
                     </ResultTypographyStyled>
                 </Grid2Styled>
                 <Grid2Styled size={{ lg: 6 }}>
