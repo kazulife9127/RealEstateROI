@@ -4,7 +4,7 @@ import { DialogTitle, Dialog }from '@mui/material';
 import IconButton from '@mui/material/IconButton';
 import DialogContent from '@mui/material/DialogContent';
 import Box from '@mui/material/Box';
-import Typography from '@mui/material/Typography';
+import Typography, { TypographyProps } from '@mui/material/Typography';
 import Button from '@mui/material/Button';
 
 // ダイアログのスタイルをカスタマイズ
@@ -22,6 +22,7 @@ export const StyledDialogTitle = styled(DialogTitle)(({ theme }) => ({
   justifyContent: 'space-between',
   alignItems: 'center',
   padding: theme.spacing(2),
+  disableTypography: true
 }));
 
 // クローズボタンのスタイル
@@ -47,5 +48,5 @@ export const StyledSignOutButton = styled(Button)(({ theme }) => ({
   marginTop: theme.spacing(2),
 }));
 
-export const StyledTypography = styled(Typography)(({  }) => ({
+export const StyledTypography = styled(Typography)<TypographyProps>(({  }) => ({
 }));

@@ -1,5 +1,5 @@
 // src/components/RequireAuth.tsx
-import React, { useEffect, useState } from 'react';
+import React, { useEffect } from 'react';
 import { useAuth } from './AuthContext';
 
 interface RequireAuthProps {
@@ -7,21 +7,16 @@ interface RequireAuthProps {
 }
 
 export const RequireAuth: React.FC<RequireAuthProps> = ({ children }) => {
+  // アカウント認証されているかどうか(boolean)が入ってくる
   const { isAuthenticated, showAuthDialog } = useAuth();
-  const [loading, setLoading] = useState(true);
 
+  // アカウント認証されていない場合、認証ダイアログを表示する
   useEffect(() => {
-    if (isAuthenticated) {
-      setLoading(false);
-    } else {
+    if (!isAuthenticated) {
       showAuthDialog();
-      setLoading(false);
-    }
-  }, [isAuthenticated, showAuthDialog]);
+    } 
+  }, [isAuthenticated]);
 
-  if (loading) {
-    return <div>Loading...</div>; // ローディングスピナーなどを表示
-  }
-
+  // アカウント認証されている場合のみ、Spreadsheetページを表示させる
   return isAuthenticated ? children : undefined;
 };

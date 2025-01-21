@@ -1,21 +1,7 @@
 // src/hooks/Auth/AuthContext.tsx
 import React, { createContext, useContext, useState, useEffect, ReactNode } from 'react';
-import { Authenticator } from '@aws-amplify/ui-react';
-import '@aws-amplify/ui-react/styles.css'; // 必要に応じてスタイルをインポート
 import { getCurrentUser } from 'aws-amplify/auth';
-
-// スタイルのインポート
-import {
-  StyledDialog,
-  StyledDialogTitle,
-  StyledCloseButton,
-  StyledDialogContent,
-  StyledAuthMessageBox,
-  StyledSignOutButton,
-  StyledTypography,
-} from './AuthDialog.style';
-
-import CloseIcon from '@mui/icons-material/Close';
+import { AuthDialog } from './AuthDialog/AuthDialog';
 
 interface AuthContextType {
   isAuthenticated: boolean;
@@ -30,23 +16,24 @@ interface AuthProviderProps {
 }
 
 export const AuthProvider: React.FC<AuthProviderProps> = ({ children }) => {
+  // 認証ダイアログの表示状態を管理
   const [showAuth, setShowAuth] = useState(false);
+  // ユーザーの認証状態(ログインしているかどうか)を管理
   const [isAuthenticated, setIsAuthenticated] = useState(false);
 
-  const showAuthDialog = () => {
-    setShowAuth(true);
-  };
-
-  const hideAuthDialog = () => {
-    setShowAuth(false);
-  };
+  // 認証ダイアログを表示する
+  const showAuthDialog = () => setShowAuth(true);
+  // 認証ダイアログを非表示にする
+  const hideAuthDialog = () => setShowAuth(false);
 
   useEffect(() => {
     const checkAuth = async () => {
       try {
+        // 現在のユーザーを取得し、認証が成功すれば、認証状態をTrueにする
         await getCurrentUser();
         setIsAuthenticated(true);
       } catch {
+        // 認証が失敗していれば、認証状態をFalseにする
         setIsAuthenticated(false);
       }
     };
@@ -54,38 +41,11 @@ export const AuthProvider: React.FC<AuthProviderProps> = ({ children }) => {
   }, []);
 
   return (
-      <AuthContext.Provider value={{ isAuthenticated, showAuthDialog, hideAuthDialog }}>
-        {children}
-        <StyledDialog open={showAuth} onClose={hideAuthDialog}>
-          <StyledDialogTitle>
-            <StyledTypography variant="h6">ログイン認証</StyledTypography>
-            <StyledCloseButton aria-label="close" onClick={hideAuthDialog}>
-              <CloseIcon />
-            </StyledCloseButton>
-          </StyledDialogTitle>
-          <StyledDialogContent dividers>
-            <Authenticator
-            >
-              {({ signOut, user }) => (
-                <StyledAuthMessageBox>
-                  <StyledTypography variant="h6" gutterBottom>
-                    {user ? `ID: ${user.username}` : 'ログインに成功しました'}
-                  </StyledTypography>
-                  {user && (
-                    <StyledSignOutButton
-                      variant="contained"
-                      color="primary"
-                      onClick={signOut}
-                    >
-                      サインアウト
-                    </StyledSignOutButton>
-                  )}
-                </StyledAuthMessageBox>
-              )}
-            </Authenticator>
-          </StyledDialogContent>
-        </StyledDialog>
-      </AuthContext.Provider>
+    <AuthContext.Provider value={{ isAuthenticated, showAuthDialog, hideAuthDialog }}>
+      {children}
+      {/* 認証ダイアログを表示する */}
+      <AuthDialog open={showAuth} onClose={hideAuthDialog} />
+    </AuthContext.Provider>
   );
 };
 
