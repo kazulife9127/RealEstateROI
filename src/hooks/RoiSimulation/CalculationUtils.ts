@@ -1,5 +1,4 @@
-// CalculationUtils.ts
-
+// 収支試算の計算方法の中身を実装
 
 /**
  * 家賃収入（年額）を計算する関数
@@ -12,9 +11,9 @@ export const calculateAnnualRentIncome = (expectedAnnualIncome: number): number 
 
 /**
  * 控除・諸経費（年額）を計算する関数
- * @param annualRentIncome - 家賃収入（円）
- * @param vacancyRate - 空室率（%）
- * @param expenseRate - 諸経費率（%）
+ * @param annualRentIncome -> 家賃収入（円）
+ * @param vacancyRate -> 空室率（%）
+ * @param expenseRate -> 諸経費率（%）
  * @returns 総諸経費（円）
  */
 export const calculateTotalExpenses = (
@@ -28,8 +27,8 @@ export const calculateTotalExpenses = (
 
 /**
  * 表面利回りを計算する関数
- * @param annualRentIncome - 家賃収入（円）
- * @param propertyPrice - 物件価格（円）
+ * @param annualRentIncome -> 家賃収入（円）
+ * @param propertyPrice -> 物件価格（円）
  * @returns 表面利回り（%）
  */
 export const calculateSurfaceYield = (
@@ -41,9 +40,9 @@ export const calculateSurfaceYield = (
 
 /**
  * 実質利回りを計算する関数
- * @param annualRentIncome - 家賃収入（円）
- * @param totalExpenses - 総諸経費（円）
- * @param propertyPrice - 物件価格（円）
+ * @param annualRentIncome -> 家賃収入（円）
+ * @param totalExpenses -> 総諸経費（円）
+ * @param propertyPrice -> 物件価格（円）
  * @returns 実質利回り（%）
  */
 export const calculateEffectiveYield = (
@@ -56,8 +55,8 @@ export const calculateEffectiveYield = (
 
 /**
  * 年間支出を計算する関数
- * @param annualRepayment - 年間返済額（円）
- * @param totalExpenses - 総諸経費（円）
+ * @param annualRepayment -> 年間返済額（円）
+ * @param totalExpenses -> 総諸経費（円）
  * @returns 年間支出（円）
  */
 export const calculateAnnualExpenses = (
@@ -69,8 +68,8 @@ export const calculateAnnualExpenses = (
 
 /**
  * 年間手取りを計算する関数
- * @param annualRentIncome - 家賃収入（円）
- * @param annualExpenses - 年間支出（円）
+ * @param annualRentIncome -> 家賃収入（円）
+ * @param annualExpenses -> 年間支出（円）
  * @returns 年間手取り（円）
  */
 export const calculateAnnualNetIncome = (
@@ -82,8 +81,8 @@ export const calculateAnnualNetIncome = (
 
 /**
  * 返済後利回りを計算する関数
- * @param annualNetIncome - 年間手取り（円）
- * @param propertyPrice - 物件価格（円）
+ * @param annualNetIncome -> 年間手取り（円）
+ * @param propertyPrice -> 物件価格（円）
  * @returns 返済後利回り（%）
  */
 export const calculateRepaymentAfterYield = (
@@ -95,8 +94,8 @@ export const calculateRepaymentAfterYield = (
 
 /**
  * 投資利回りを計算する関数
- * @param annualNetIncome - 年間手取り（円）
- * @param ownCapital - 自己資金（円）
+ * @param annualNetIncome -> 年間手取り（円）
+ * @param ownCapital -> 自己資金（円）
  * @returns 投資利回り（%）
  */
 export const calculateInvestmentYield = (
@@ -108,9 +107,9 @@ export const calculateInvestmentYield = (
 
 /**
  * 元利均等返済方式の返済額を計算する関数
- * @param loanAmount - 借入額（円）
- * @param annualRate - 年利率（小数）
- * @param loanTerm - 借入期間（年）
+ * @param loanAmount -> 借入額（円）
+ * @param annualRate -> 年利率（小数）
+ * @param loanTerm -> 借入期間（年）
  * @returns 月次返済額、年間返済額、総返済額、元金返済総額、利息返済総額を含むオブジェクト
  */
 export const calculateEqualPrincipalAndInterestRepayment = (
@@ -150,7 +149,7 @@ export const calculateEqualPrincipalAndInterestRepayment = (
 
 /**
  * 月額家賃収入を計算する関数
- * @param expectedAnnualIncome - 想定年収（万円単位）
+ * @param expectedAnnualIncome -> 想定年収（万円単位）
  * @returns 月額家賃収入（円）
  */
 export const calculateMonthlyRentIncome = (expectedAnnualIncome: number): number => {
@@ -159,9 +158,9 @@ export const calculateMonthlyRentIncome = (expectedAnnualIncome: number): number
 
 /**
  * 月額控除・諸経費を計算する関数
- * @param monthlyRentIncome - 月額家賃収入（円）
- * @param vacancyRate - 空室率（%）
- * @param expenseRate - 諸経費率（%）
+ * @param monthlyRentIncome -> 月額家賃収入（円）
+ * @param vacancyRate -> 空室率（%）
+ * @param expenseRate -> 諸経費率（%）
  * @returns 月額諸経費（円）
  */
 export const calculateMonthlyExpenses = (
@@ -175,8 +174,8 @@ export const calculateMonthlyExpenses = (
 
 /**
  * 月間手取りを計算する関数
- * @param monthlyRentIncome - 月額家賃収入（円）
- * @param monthlyExpenses - 月間支出（円）
+ * @param monthlyRentIncome -> 月額家賃収入（円）
+ * @param monthlyExpenses -> 月間支出（円）
  * @returns 月間手取り（円）
  */
 export const calculateMonthlyNetIncome = (
@@ -188,8 +187,8 @@ export const calculateMonthlyNetIncome = (
 
 /**
  * 投資利回り（月次）を計算する関数
- * @param monthlyNetIncome - 月間手取り（円）
- * @param ownCapital - 自己資金（円）
+ * @param monthlyNetIncome -> 月間手取り（円）
+ * @param ownCapital -> 自己資金（円）
  * @returns 投資利回り（%）
  */
 export const calculateInvestmentYieldMonthly = (
