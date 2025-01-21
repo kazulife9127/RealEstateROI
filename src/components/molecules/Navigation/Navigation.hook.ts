@@ -44,6 +44,13 @@ export const useNavigation = ({ isNavigationOpened }: Params): ViewProps => {
         tooltipTitle: isNavigationOpened ? "" : "ROI Simulation",
       },
       {
+        toUri: "/spreadsheet",
+        Icon: TableViewIcon,
+        children: "Spreadsheet",
+        selected: pathname.startsWith("/spreadsheet"),
+        tooltipTitle: isNavigationOpened ? "" : "Spreadsheet",
+      },
+      {
         toUri: "/value-map",
         Icon: MapIcon,
         children: "Value Map",
@@ -51,13 +58,6 @@ export const useNavigation = ({ isNavigationOpened }: Params): ViewProps => {
         tooltipTitle: isNavigationOpened ? "" : "Value Map",
         disabled: true,
         },
-      {
-        toUri: "/spreadsheet",
-        Icon: TableViewIcon,
-        children: "Spreadsheet",
-        selected: pathname.startsWith("/spreadsheet"),
-        tooltipTitle: isNavigationOpened ? "" : "Spreadsheet",
-      },
     ];
   }, [isNavigationOpened, pathname]);
 
