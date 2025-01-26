@@ -1,7 +1,8 @@
-import React, {useState} from 'react';
+// src/components/RealEstateInputForm/RealEstateInputForm.view.tsx
+
+import React from 'react';
 import {
     PaperStyled,
-    TypographyStyled,
     TextFieldStyled,
     Grid2Styled,
     ButtonStyled,
@@ -11,7 +12,23 @@ import {
     FormHelperTextStyled
 } from "./RealEstateInputForm.style";
 
-export type Props = {};
+// フォームデータの型定義
+interface FormData {
+    propertyName: string;
+    prefecture: string;
+    city: string;
+    addressLine: string;
+    buildingInfo: string;
+    importance: string;
+}
+
+export type Props = {
+    formData: FormData;
+    handleChange: React.ChangeEventHandler<HTMLInputElement | HTMLTextAreaElement>;
+    handleSave: () => Promise<void>;
+    loading: boolean;
+    error: string | null;
+};
 
 const prefectures = [
     { code: 'Hokkaido', name: '北海道' },
@@ -61,24 +78,15 @@ const prefectures = [
     { code: 'Miyazaki', name: '宮崎県' },
     { code: 'Kagoshima', name: '鹿児島県' },
     { code: 'Okinawa', name: '沖縄県' }
-  ];
-  
-export const RealEstateInputFormView: React.FC<Props> = () => {
-    const [propertyName, setPropertyName] = useState('');
-    const [prefecture, setPrefecture] = useState('');
-    const [city, setCity] = useState('');
-    const [addressLine, setAddressLine] = useState('');
-    const [buildingInfo, setBuildingInfo] = useState('');
-    const [importance, setImportance] = useState('');
+];
 
-    const fullAddress = `${prefecture}${city}${addressLine}${buildingInfo}`;
-
-    const handleSave = () => {
-        console.log('物件名:', propertyName);
-        console.log('住所:', fullAddress);
-        console.log('重要度:', importance);
-        // データ送信等の処理をここに追加
-    };
+export const RealEstateInputFormView: React.FC<Props> = ({
+    formData,
+    handleChange,
+    handleSave,
+    loading,
+    error,
+}) => {
 
     return (
         <>
@@ -93,8 +101,9 @@ export const RealEstateInputFormView: React.FC<Props> = () => {
                             variant="outlined"
                             margin="normal"
                             type="text"
-                            value={propertyName}
-                            onChange={(e) => setPropertyName(e.target.value)}
+                            name="propertyName"
+                            value={formData.propertyName}
+                            onChange={handleChange}
                         />
                         <FormHelperTextStyled>後で編集が可能です</FormHelperTextStyled>
                     </Grid2Styled>
@@ -110,12 +119,13 @@ export const RealEstateInputFormView: React.FC<Props> = () => {
                                 sx={{ width: '100%' }}
                                 variant="outlined"
                                 margin="normal"
-                                value={prefecture}
-                                onChange={(e) => setPrefecture(e.target.value)}
+                                name="prefecture"
+                                value={formData.prefecture}
+                                onChange={handleChange}
                             >
-                                {prefectures.map((prefecture) => (
-                                        <MenuItemStyled key={prefecture.code} value={prefecture.code}>
-                                            {prefecture.name}
+                                {prefectures.map((pref) => (
+                                        <MenuItemStyled key={pref.code} value={pref.code}>
+                                            {pref.name}
                                         </MenuItemStyled>
                                     ))}
                             </TextFieldStyled>
@@ -129,8 +139,9 @@ export const RealEstateInputFormView: React.FC<Props> = () => {
                                 variant="outlined"
                                 margin="normal"
                                 type="text"
-                                value={city}
-                                onChange={(e) => setCity(e.target.value)}
+                                name="city"
+                                value={formData.city}
+                                onChange={handleChange}
                             />
                         </Grid2Styled>
 
@@ -142,8 +153,9 @@ export const RealEstateInputFormView: React.FC<Props> = () => {
                                 variant="outlined"
                                 margin="normal"
                                 type="text"
-                                value={addressLine}
-                                onChange={(e) => setAddressLine(e.target.value)}
+                                name="addressLine"
+                                value={formData.addressLine}
+                                onChange={handleChange}
                             />
                         </Grid2Styled>
 
@@ -155,22 +167,25 @@ export const RealEstateInputFormView: React.FC<Props> = () => {
                                 variant="outlined"
                                 margin="normal"
                                 type="text"
-                                value={buildingInfo}
-                                onChange={(e) => setBuildingInfo(e.target.value)}
+                                name="buildingInfo"
+                                value={formData.buildingInfo}
+                                onChange={handleChange}
                             />
                         </Grid2Styled>
                     </Grid2Styled>
                 </BoxStyled>
 
-                <Grid2Styled size={{ xs: 1}}>
+                {/* 重要度 */}
+                <Grid2Styled size={{ xs: 12 }}>
                     <TextFieldStyled
                         select
                         sx={{ width: '100%' }}
                         label="重要度"
                         variant="outlined"
                         margin="normal"
-                        value={importance}
-                        onChange={(e) => setImportance(e.target.value)}
+                        name="importance"
+                        value={formData.importance}
+                        onChange={handleChange}
                     >
                         <MenuItemStyled value="A">A</MenuItemStyled>
                         <MenuItemStyled value="B">B</MenuItemStyled>
@@ -180,14 +195,23 @@ export const RealEstateInputFormView: React.FC<Props> = () => {
                     </TextFieldStyled>
                 </Grid2Styled>
 
+                {/* エラーメッセージの表示 */}
+                {error && (
+                    <FormHelperTextStyled error>
+                        {error}
+                    </FormHelperTextStyled>
+                )}
+
+                {/* 保存ボタン */}
                 <Grid2Styled container justifyContent="flex-end" spacing={2}>
                     <Grid2Styled>
                         <ButtonStyled 
                             variant="contained" 
                             color="primary"
                             onClick={handleSave}
+                            disabled={loading}
                         >
-                            保存する
+                            {loading ? '保存中...' : '保存する'}
                         </ButtonStyled>
                     </Grid2Styled>
                 </Grid2Styled>
