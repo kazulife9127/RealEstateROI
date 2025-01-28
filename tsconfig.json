@@ -9,7 +9,7 @@
     "paths": {
       "@/*": ["./src/*"],
     },
-    "types": ["node"],
+    "types": ["node", "jest"],
 
     /* Bundler mode */
     "moduleResolution": "bundler",

@@ -3,7 +3,7 @@ import React from 'react';
 import { CashFlowInputForm } from '@/components/templates/CashFlowInputForm';
 import { CashFlowResult } from '@/components/templates/CashFlowResult';
 import { CashFlowGraph } from '@/components/templates/CashFlowGraph';
-
+import { RealEstateInputForm } from '@/components/templates/RealEstateInputForm';
 import { MainTitleStyled } from '@/components/atoms/MainTitle';
 import {
   GridStyled,
@@ -37,6 +37,11 @@ export const RoiSimulationView: React.FC<Props> = () => {
               <UnderGridStyled size={{ xs: 12}}>
                 <BoxStyled>
                     <CashFlowGraph/>
+                </BoxStyled>
+              </UnderGridStyled>
+              <UnderGridStyled size={{ xs: 12}}>
+                <BoxStyled>
+                    <RealEstateInputForm/>
                 </BoxStyled>
               </UnderGridStyled>
             </GridStyled>
