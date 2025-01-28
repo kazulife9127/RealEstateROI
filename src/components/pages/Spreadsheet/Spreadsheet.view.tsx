@@ -99,7 +99,7 @@ export const SpreadsheetView: React.FC<Props> = ({
       <Grid2Styled container justifyContent="flex-end" spacing={2}>
         <Grid2Styled>
           <ButtonStyled variant="contained" color="primary" onClick={refetch} disabled={loading}>
-            データを再取得
+            更新
           </ButtonStyled>
         </Grid2Styled>
         <Grid2Styled>
