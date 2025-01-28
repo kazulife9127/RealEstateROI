@@ -14,7 +14,8 @@ const Root: React.FC = () => {
   const [isConfigured, setIsConfigured] = useState(false);
 
   useEffect(() => {
-    fetch('http://localhost:5001/api/config')
+    const apiUrl = import.meta.env.VITE_API_URL || 'http://localhost:5001/api';
+    fetch(`${apiUrl}/config`)
       .then(response => response.json())
       .then((data: ConfigData) => {
         const config = {
