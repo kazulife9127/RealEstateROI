@@ -37,15 +37,15 @@ export const SpreadsheetView: React.FC<Props> = ({ data, loading, error, refetch
   });
 
   const columns: GridColDef[] = [
-    { field: 'createdAt', headerName: '作成日', width: 90 },
+    { field: 'createdAt', headerName: '作成日', width: 150 },
     { field: 'propertyName', headerName: '物件名', width: 250, editable: true },
     { field: 'address', headerName: '住所', width: 180, editable: true },
     { field: 'importance', headerName: '重要度', width: 120, editable: true },
-    { field: 'monthlyRepayment', headerName: '返済額(月額)', width: 130 },
-    { field: 'annualRepayment', headerName: '返済額(年額)', width: 130 },
+    { field: 'monthlyRepayment', headerName: '返済額（月額）', width: 130 },
+    { field: 'annualRepayment', headerName: '返済額（年額）', width: 130 },
     { field: 'totalRepayment', headerName: '返済総額', width: 130 },
-    { field: 'annualRentIncome', headerName: '家賃収入(年額)', width: 150 },
-    { field: 'totalExpenses', headerName: '控除・諸経費', width: 150 },
+    { field: 'annualRentIncome', headerName: '家賃収入（年額）', width: 150 },
+    { field: 'totalExpenses', headerName: '控除・諸経費（年額）', width: 150 },
     { field: 'annualExpenses', headerName: '年間支出', width: 130 },
     { field: 'annualNetIncome', headerName: '年間手取り', width: 130 },
     { field: 'surfaceYield', headerName: '表面利回り', width: 120 },
@@ -60,17 +60,17 @@ export const SpreadsheetView: React.FC<Props> = ({ data, loading, error, refetch
     propertyName: item.propertyName,
     address: item.address,
     importance: item.importance,
-    monthlyRepayment: item.monthlyRepayment,
-    annualRepayment: item.annualRepayment,
-    totalRepayment: item.totalRepayment,
-    annualRentIncome: item.annualRentIncome,
-    totalExpenses: item.totalExpenses,
-    annualExpenses: item.annualExpenses,
-    annualNetIncome: item.annualNetIncome,
-    surfaceYield: item.surfaceYield,
-    effectiveYield: item.effectiveYield,
-    repaymentAfterYield: item.repaymentAfterYield,
-    investmentYield: item.investmentYield,
+    monthlyRepayment: `${formatCurrency(item.monthlyRepayment)}`,
+    annualRepayment: `${formatCurrency(item.annualRepayment)}`,
+    totalRepayment: `${formatCurrency(item.totalRepayment)}`,
+    annualRentIncome: `${formatCurrency(item.annualRentIncome)}`,
+    totalExpenses: `${formatCurrency(item.totalExpenses)}`,
+    annualExpenses: `${formatCurrency(item.annualExpenses)}`,
+    annualNetIncome: `${formatCurrency(item.annualNetIncome)}`,
+    surfaceYield: `${formatPercentage(item.surfaceYield)}%`,
+    effectiveYield: `${formatPercentage(item.effectiveYield)}%`,
+    repaymentAfterYield: `${formatPercentage(item.repaymentAfterYield)}%`,
+    investmentYield: `${formatPercentage(item.investmentYield)}%`,
   }));
 
   return (
@@ -103,3 +103,7 @@ export const SpreadsheetView: React.FC<Props> = ({ data, loading, error, refetch
     </>
   );
 };
+
+// 以下はSpreadsheet.view.tsxの下に追加してください
+// Format関数のインポートが必要です
+import { formatCurrency, formatPercentage } from '@/hooks/RoiSimulation/Formatting';
