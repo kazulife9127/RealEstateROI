@@ -1,6 +1,6 @@
 // src/components/templates/Spreadsheet/Spreadsheet.view.tsx
 import React, { useState } from 'react';
-import { DataGrid, GridColDef, GridPaginationModel } from '@mui/x-data-grid';
+import { DataGrid, GridColDef, GridPaginationModel, GridRowSelectionModel } from '@mui/x-data-grid';
 import { MainTitleStyled } from '@/components/atoms/MainTitle';
 import { formatCurrency, formatPercentage } from '@/hooks/RoiSimulation/Formatting';
 
@@ -34,19 +34,32 @@ export interface Props {
   loading: boolean;
   error: string | null;
   refetch: () => void;
+  rowSelectionModel: GridRowSelectionModel; 
+  setRowSelectionModel: (selection: GridRowSelectionModel) => void; 
+  handleDelete: () => Promise<void>;
+  deleting: boolean;
 }
 
-export const SpreadsheetView: React.FC<Props> = ({ data, loading, error, refetch }) => {
+export const SpreadsheetView: React.FC<Props> = ({
+  data,
+  loading,
+  error,
+  refetch,
+  rowSelectionModel, 
+  setRowSelectionModel, 
+  handleDelete,
+  deleting,
+}) => {
   const [paginationModel, setPaginationModel] = useState<GridPaginationModel>({
     page: 0,
     pageSize: 10,
   });
 
   const columns: GridColDef[] = [
-    { field: 'createdAt', headerName: '作成日', width: 150 },
+    { field: 'createdAt', headerName: '作成日', width: 90 },
     { field: 'propertyName', headerName: '物件名', width: 250, editable: true },
     { field: 'address', headerName: '住所', width: 180, editable: true },
-    { field: 'importance', headerName: '重要度', width: 120, editable: true },
+    { field: 'importance', headerName: '重要度', width: 70, editable: true },
     { field: 'monthlyRepayment', headerName: '返済額（月額）', width: 130 },
     { field: 'annualRepayment', headerName: '返済額（年額）', width: 130 },
     { field: 'totalRepayment', headerName: '返済総額', width: 130 },
@@ -84,12 +97,23 @@ export const SpreadsheetView: React.FC<Props> = ({ data, loading, error, refetch
       <MainTitleStyled variant='h2'>Spreadsheet</MainTitleStyled>
       {/* データを再取得するボタン（オプション） */}
       <Grid2Styled container justifyContent="flex-end" spacing={2}>
-          <Grid2Styled>
-              <ButtonStyled variant="contained" color="primary" onClick={refetch}>
-              データを再取得
-              </ButtonStyled>
-          </Grid2Styled>
+        <Grid2Styled>
+          <ButtonStyled variant="contained" color="primary" onClick={refetch} disabled={loading}>
+            データを再取得
+          </ButtonStyled>
+        </Grid2Styled>
+        <Grid2Styled>
+          <ButtonStyled
+            variant="contained"
+            color="secondary"
+            onClick={handleDelete}
+            disabled={deleting || rowSelectionModel.length === 0}
+          >
+            {deleting ? '削除中...' : '選択したデータを削除'}
+          </ButtonStyled>
+        </Grid2Styled>
       </Grid2Styled>
+
       {loading && <div>読み込み中...</div>}
       {error && <div style={{ color: 'red' }}>エラー: {error}</div>}
 
@@ -104,11 +128,13 @@ export const SpreadsheetView: React.FC<Props> = ({ data, loading, error, refetch
             pageSizeOptions={[10, 20, 50]}
             checkboxSelection
             disableRowSelectionOnClick
-            // 必要に応じて他のプロパティを追加
+            rowSelectionModel={rowSelectionModel} 
+            onRowSelectionModelChange={(newSelection) => {
+              setRowSelectionModel(newSelection);
+            }}
           />
         </div>
       )}
     </>
   );
 };
-

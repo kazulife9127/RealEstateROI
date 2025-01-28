@@ -262,7 +262,7 @@ export const CashFlowInputFormView: React.FC<Props> = ({
 
                 <Grid2Styled container justifyContent="flex-end" spacing={2}>
                     <Grid2Styled>
-                        <ButtonStyled variant="contained" color="primary" onClick={handleReset}>
+                        <ButtonStyled variant="contained" color="secondary" onClick={handleReset}>
                             リセット
                         </ButtonStyled>
                     </Grid2Styled>

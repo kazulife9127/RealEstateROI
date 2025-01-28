@@ -204,20 +204,19 @@ export const RealEstateInputFormView: React.FC<Props> = ({
                         {error}
                     </FormHelperTextStyled>
                 )}
-                 {/* リセットボタン */}
+                 
                  <Grid2Styled container justifyContent="flex-end" spacing={2}>
+                    {/* リセットボタン */}
                     <Grid2Styled>
                         <ButtonStyled 
                             variant="contained" 
-                            color="primary"
+                            color="secondary"
                             onClick={handleReset}
                         >
                             リセット
                         </ButtonStyled>
                     </Grid2Styled>
-                </Grid2Styled>
-                {/* 保存ボタン */}
-                <Grid2Styled container justifyContent="flex-end" spacing={2}>
+                    {/* 保存ボタン */}
                     <Grid2Styled>
                         <ButtonStyled
                             variant="contained" 
