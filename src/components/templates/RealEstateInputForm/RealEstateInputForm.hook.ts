@@ -1,38 +1,22 @@
 // src/hooks/RealEstateInputForm.hook.ts
-
 import { useState } from 'react';
 import { fetchAuthSession, getCurrentUser } from "aws-amplify/auth";
 import { useCashFlowResult } from '@/components/templates/CashFlowResult/CashFlowResult.hook';
 import { CalculatedResult } from "@/types/SimulationData";
+import { FormData , Props as ViewProps} from "./RealEstateInputForm.view";
 
-// フォームデータの型定義
-interface FormData {
-    propertyName: string;
-    prefecture: string;
-    city: string;
-    addressLine: string;
-    buildingInfo: string;
-    importance: string;
-}
-
-export type Props = {
-    formData: FormData;
-    handleChange: React.ChangeEventHandler<HTMLInputElement | HTMLTextAreaElement>;
-    handleSave: () => Promise<void>;
-    loading: boolean;
-    error: string | null;
-};
-
-export const useRealEstateInputForm = (): Props => {
-    // フォームデータの状態管理
-    const [formData, setFormData] = useState<FormData>({
+export const useRealEstateInputForm = (): ViewProps => {
+    const initialFormData: FormData = {
         propertyName: '',
         prefecture: '',
         city: '',
         addressLine: '',
         buildingInfo: '',
         importance: '',
-    });
+    };
+
+    // フォームデータの状態管理
+    const [formData, setFormData] = useState<FormData>(initialFormData);
 
     // ローディング状態とエラー状態の管理
     const [loading, setLoading] = useState<boolean>(false);
@@ -59,17 +43,16 @@ export const useRealEstateInputForm = (): Props => {
 
         try {
             // 現在の認証ユーザーを取得
-            const { username } = await getCurrentUser();
+            //const { username } = await getCurrentUser();
             const session = await fetchAuthSession();
             const token = session?.tokens?.idToken?.toString();
 
             // フォームデータとCashFlowResultを統合
             const payload = {
-                username,
+                //username,
                 propertyName: formData.propertyName,
                 address: `${formData.prefecture}${formData.city}${formData.addressLine}${formData.buildingInfo}`,
                 importance: formData.importance,
-            
                 monthlyRepayment: result.monthlyRepayment,
                 annualRepayment: result.annualRepayment,
                 totalRepayment: result.totalRepayment,
@@ -103,15 +86,6 @@ export const useRealEstateInputForm = (): Props => {
 
             // 成功時の処理（例: フォームのリセット、通知の表示）
             alert('データが保存されました！');
-            // フォームのリセット
-            setFormData({
-                propertyName: '',
-                prefecture: '',
-                city: '',
-                addressLine: '',
-                buildingInfo: '',
-                importance: '',
-            });
 
         } catch (err: unknown) {
             let message = 'データの保存中にエラーが発生しました';
@@ -126,10 +100,16 @@ export const useRealEstateInputForm = (): Props => {
         }
     };
 
+    // フォームリセットハンドラー
+    const handleReset = () => {
+        setFormData(initialFormData);
+    };
+
     return {
         formData,
         handleChange,
         handleSave,
+        handleReset,
         loading,
         error,
     };

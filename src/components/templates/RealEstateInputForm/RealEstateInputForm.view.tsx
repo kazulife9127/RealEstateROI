@@ -13,7 +13,7 @@ import {
 } from "./RealEstateInputForm.style";
 
 // フォームデータの型定義
-interface FormData {
+export interface FormData {
     propertyName: string;
     prefecture: string;
     city: string;
@@ -26,64 +26,67 @@ export type Props = {
     formData: FormData;
     handleChange: React.ChangeEventHandler<HTMLInputElement | HTMLTextAreaElement>;
     handleSave: () => Promise<void>;
+    handleReset: () => void;
     loading: boolean;
     error: string | null;
 };
 
 const prefectures = [
-    { code: 'Hokkaido', name: '北海道' },
-    { code: 'Aomori', name: '青森県' },
-    { code: 'Iwate', name: '岩手県' },
-    { code: 'Miyagi', name: '宮城県' },
-    { code: 'Akita', name: '秋田県' },
-    { code: 'Yamagata', name: '山形県' },
-    { code: 'Fukushima', name: '福島県' },
-    { code: 'Ibaraki', name: '茨城県' },
-    { code: 'Tochigi', name: '栃木県' },
-    { code: 'Gunma', name: '群馬県' },
-    { code: 'Saitama', name: '埼玉県' },
-    { code: 'Chiba', name: '千葉県' },
-    { code: 'Tokyo', name: '東京都' },
-    { code: 'Kanagawa', name: '神奈川県' },
-    { code: 'Niigata', name: '新潟県' },
-    { code: 'Toyama', name: '富山県' },
-    { code: 'Ishikawa', name: '石川県' },
-    { code: 'Fukui', name: '福井県' },
-    { code: 'Yamanashi', name: '山梨県' },
-    { code: 'Nagano', name: '長野県' },
-    { code: 'Gifu', name: '岐阜県' },
-    { code: 'Shizuoka', name: '静岡県' },
-    { code: 'Aichi', name: '愛知県' },
-    { code: 'Mie', name: '三重県' },
-    { code: 'Shiga', name: '滋賀県' },
-    { code: 'Kyoto', name: '京都府' },
-    { code: 'Osaka', name: '大阪府' },
-    { code: 'Hyogo', name: '兵庫県' },
-    { code: 'Nara', name: '奈良県' },
-    { code: 'Wakayama', name: '和歌山県' },
-    { code: 'Tottori', name: '鳥取県' },
-    { code: 'Shimane', name: '島根県' },
-    { code: 'Okayama', name: '岡山県' },
-    { code: 'Hiroshima', name: '広島県' },
-    { code: 'Yamaguchi', name: '山口県' },
-    { code: 'Tokushima', name: '徳島県' },
-    { code: 'Kagawa', name: '香川県' },
-    { code: 'Ehime', name: '愛媛県' },
-    { code: 'Kochi', name: '高知県' },
-    { code: 'Fukuoka', name: '福岡県' },
-    { code: 'Saga', name: '佐賀県' },
-    { code: 'Nagasaki', name: '長崎県' },
-    { code: 'Kumamoto', name: '熊本県' },
-    { code: 'Oita', name: '大分県' },
-    { code: 'Miyazaki', name: '宮崎県' },
-    { code: 'Kagoshima', name: '鹿児島県' },
-    { code: 'Okinawa', name: '沖縄県' }
+    { code: '北海道', name: '北海道' },
+    { code: '青森県', name: '青森県' },
+    { code: '岩手県', name: '岩手県' },
+    { code: '宮城県', name: '宮城県' },
+    { code: '秋田県', name: '秋田県' },
+    { code: '山形県', name: '山形県' },
+    { code: '福島県', name: '福島県' },
+    { code: '茨城県', name: '茨城県' },
+    { code: '栃木県', name: '栃木県' },
+    { code: '群馬県', name: '群馬県' },
+    { code: '埼玉県', name: '埼玉県' },
+    { code: '千葉県', name: '千葉県' },
+    { code: '東京都', name: '東京都' },
+    { code: '神奈川県', name: '神奈川県' },
+    { code: '新潟県', name: '新潟県' },
+    { code: '富山県', name: '富山県' },
+    { code: '石川県', name: '石川県' },
+    { code: '福井県', name: '福井県' },
+    { code: '山梨県', name: '山梨県' },
+    { code: '長野県', name: '長野県' },
+    { code: '岐阜県', name: '岐阜県' },
+    { code: '静岡県', name: '静岡県' },
+    { code: '愛知県', name: '愛知県' },
+    { code: '三重県', name: '三重県' },
+    { code: '滋賀県', name: '滋賀県' },
+    { code: '京都府', name: '京都府' },
+    { code: '大阪府', name: '大阪府' },
+    { code: '兵庫県', name: '兵庫県' },
+    { code: '奈良県', name: '奈良県' },
+    { code: '和歌山県', name: '和歌山県' },
+    { code: '鳥取県', name: '鳥取県' },
+    { code: '島根県', name: '島根県' },
+    { code: '岡山県', name: '岡山県' },
+    { code: '広島県', name: '広島県' },
+    { code: '山口県', name: '山口県' },
+    { code: '徳島県', name: '徳島県' },
+    { code: '香川県', name: '香川県' },
+    { code: '愛媛県', name: '愛媛県' },
+    { code: '高知県', name: '高知県' },
+    { code: '福岡県', name: '福岡県' },
+    { code: '佐賀県', name: '佐賀県' },
+    { code: '長崎県', name: '長崎県' },
+    { code: '熊本県', name: '熊本県' },
+    { code: '大分県', name: '大分県' },
+    { code: '宮崎県', name: '宮崎県' },
+    { code: '鹿児島県', name: '鹿児島県' },
+    { code: '沖縄県', name: '沖縄県' }
 ];
+
 
 export const RealEstateInputFormView: React.FC<Props> = ({
     formData,
     handleChange,
     handleSave,
+    handleReset,
     loading,
     error,
 }) => {
@@ -201,11 +204,22 @@ export const RealEstateInputFormView: React.FC<Props> = ({
                         {error}
                     </FormHelperTextStyled>
                 )}
-
+                 {/* リセットボタン */}
+                 <Grid2Styled container justifyContent="flex-end" spacing={2}>
+                    <Grid2Styled>
+                        <ButtonStyled 
+                            variant="contained" 
+                            color="primary"
+                            onClick={handleReset}
+                        >
+                            リセット
+                        </ButtonStyled>
+                    </Grid2Styled>
+                </Grid2Styled>
                 {/* 保存ボタン */}
                 <Grid2Styled container justifyContent="flex-end" spacing={2}>
                     <Grid2Styled>
-                        <ButtonStyled 
+                        <ButtonStyled
                             variant="contained" 
                             color="primary"
                             onClick={handleSave}
