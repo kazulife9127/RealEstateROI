@@ -2,6 +2,12 @@
 import React, { useState } from 'react';
 import { DataGrid, GridColDef, GridPaginationModel } from '@mui/x-data-grid';
 import { MainTitleStyled } from '@/components/atoms/MainTitle';
+import { formatCurrency, formatPercentage } from '@/hooks/RoiSimulation/Formatting';
+
+import {
+  Grid2Styled,
+  ButtonStyled,
+} from "./Spreadsheet.style";
 
 export interface SpreadsheetData {
   _id: string;
@@ -76,12 +82,19 @@ export const SpreadsheetView: React.FC<Props> = ({ data, loading, error, refetch
   return (
     <>
       <MainTitleStyled variant='h2'>Spreadsheet</MainTitleStyled>
-
+      {/* データを再取得するボタン（オプション） */}
+      <Grid2Styled container justifyContent="flex-end" spacing={2}>
+          <Grid2Styled>
+              <ButtonStyled variant="contained" color="primary" onClick={refetch}>
+              データを再取得
+              </ButtonStyled>
+          </Grid2Styled>
+      </Grid2Styled>
       {loading && <div>読み込み中...</div>}
       {error && <div style={{ color: 'red' }}>エラー: {error}</div>}
 
       {!loading && !error && (
-        <div style={{ height: 600, width: '100%' }}>
+        <div style={{ height: 600, width: '100%', marginTop: '20px' }}>
           <DataGrid
             rows={rows}
             columns={columns}
@@ -95,15 +108,7 @@ export const SpreadsheetView: React.FC<Props> = ({ data, loading, error, refetch
           />
         </div>
       )}
-
-      {/* データを再取得するボタン（オプション） */}
-      <button onClick={refetch} style={{ marginTop: '20px' }}>
-        データを再取得
-      </button>
     </>
   );
 };
 
-// 以下はSpreadsheet.view.tsxの下に追加してください
-// Format関数のインポートが必要です
-import { formatCurrency, formatPercentage } from '@/hooks/RoiSimulation/Formatting';
