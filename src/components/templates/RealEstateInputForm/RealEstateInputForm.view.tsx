@@ -95,7 +95,7 @@ export const RealEstateInputFormView: React.FC<Props> = ({
         <>
             <PaperStyled>
                 <TitleTypographyStyled>シュミレーション結果と紐付けて保存する</TitleTypographyStyled>
-                <FormHelperTextStyled>※Spreadsheetページで編集が可能です。</FormHelperTextStyled>
+                {/* <FormHelperTextStyled>※Spreadsheetページで編集が可能です。</FormHelperTextStyled> */}
                 <Grid2Styled container alignItems="center" spacing={2}>
                     {/* 物件名 */}
                     <Grid2Styled size={{ lg: 5 }}>
@@ -132,7 +132,6 @@ export const RealEstateInputFormView: React.FC<Props> = ({
                                         </MenuItemStyled>
                                     ))}
                             </TextFieldStyled>
-                            <FormHelperTextStyled>後で編集が可能です</FormHelperTextStyled>
                         </Grid2Styled>
 
                         {/* 市区町村 */}
