@@ -57,9 +57,9 @@ export const SpreadsheetView: React.FC<Props> = ({
 
   const columns: GridColDef[] = [
     { field: 'createdAt', headerName: '作成日', width: 90 },
-    { field: 'propertyName', headerName: '物件名', width: 250, editable: true },
-    { field: 'address', headerName: '住所', width: 180, editable: true },
-    { field: 'importance', headerName: '重要度', width: 70, editable: true },
+    { field: 'propertyName', headerName: '物件名', width: 250 },
+    { field: 'address', headerName: '住所', width: 180 },
+    { field: 'importance', headerName: '重要度', width: 70 },
     { field: 'monthlyRepayment', headerName: '返済額（月額）', width: 130 },
     { field: 'annualRepayment', headerName: '返済額（年額）', width: 130 },
     { field: 'totalRepayment', headerName: '返済総額', width: 130 },
