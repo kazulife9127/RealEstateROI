@@ -179,7 +179,7 @@ export const RealEstateInputFormView: React.FC<Props> = ({
                 </BoxStyled>
 
                 {/* 重要度 */}
-                <Grid2Styled size={{ xs: 12 }}>
+                <Grid2Styled size={{ xs: 12, sm: 1 }}>
                     <TextFieldStyled
                         select
                         sx={{ width: '100%' }}

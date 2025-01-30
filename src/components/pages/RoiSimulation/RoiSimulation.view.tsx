@@ -24,12 +24,12 @@ export const RoiSimulationView: React.FC<Props> = () => {
           <SubTitleStyled variant='h3'>不動産投資のシュミレーション・グラフ表示ができます。</SubTitleStyled>
           <BoxStyled sx={{ flexGrow: 1, padding: 2 }}>
             <GridStyled container spacing={2}>
-              <LeftGridStyled size={{ xs: 12, md: 6, sm: 12}}>
+              <LeftGridStyled size={{ xs: 12, sm: 12, md: 6}}>
                 <BoxStyled>
                   <CashFlowInputForm/>
                </BoxStyled> 
               </LeftGridStyled>
-              <RightGridStyled size={{ xs: 12, md: 6, sm: 12}}>
+              <RightGridStyled size={{ xs: 12, sm: 12, md: 6}}>
                 <BoxStyled>
                     <CashFlowResult/>
                 </BoxStyled>
