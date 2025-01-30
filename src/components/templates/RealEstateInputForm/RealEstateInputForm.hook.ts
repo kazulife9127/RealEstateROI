@@ -1,6 +1,6 @@
 // src/hooks/RealEstateInputForm.hook.ts
-import { useState } from 'react';
-import { fetchAuthSession, getCurrentUser } from "aws-amplify/auth";
+import { useState, useEffect } from 'react';
+import { fetchAuthSession } from "aws-amplify/auth";
 import { useCashFlowResult } from '@/components/templates/CashFlowResult/CashFlowResult.hook';
 import { CalculatedResult } from "@/types/SimulationData";
 import { FormData , Props as ViewProps} from "./RealEstateInputForm.view";
@@ -21,6 +21,28 @@ export const useRealEstateInputForm = (): ViewProps => {
     // ローディング状態とエラー状態の管理
     const [loading, setLoading] = useState<boolean>(false);
     const [error, setError] = useState<string | null>(null);
+
+    // ★ localStorageのキー名を定義
+    const LOCAL_STORAGE_KEY = 'realEstateInputData';
+
+    // ★ マウント時に localStorage から読み込む
+    useEffect(() => {
+        const saved = localStorage.getItem(LOCAL_STORAGE_KEY);
+        if (saved) {
+            try {
+                const parsed = JSON.parse(saved) as FormData;
+                setFormData(parsed);
+            } catch (err) {
+                console.error('ローカルストレージのデータ解析に失敗しました', err);
+            }
+        }
+    }, []);
+
+    // ★ formData が変化するたびに localStorage へ保存
+    useEffect(() => {
+        localStorage.setItem(LOCAL_STORAGE_KEY, JSON.stringify(formData));
+    }, [formData]);
+
 
     // useCashFlowResultフックからresultを取得
     const result: CalculatedResult = useCashFlowResult();
@@ -103,6 +125,7 @@ export const useRealEstateInputForm = (): ViewProps => {
     // フォームリセットハンドラー
     const handleReset = () => {
         setFormData(initialFormData);
+        localStorage.removeItem(LOCAL_STORAGE_KEY);
     };
 
     return {
