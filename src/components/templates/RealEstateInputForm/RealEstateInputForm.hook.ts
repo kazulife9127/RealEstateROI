@@ -106,7 +106,7 @@ export const useRealEstateInputForm = (): ViewProps => {
                 throw new Error(errorData.message || 'データの保存に失敗しました');
             }
 
-            // 成功時の処理（例: フォームのリセット、通知の表示）
+            // 成功時の処理
             alert('データが保存されました！');
 
         } catch (err: unknown) {
@@ -116,7 +116,7 @@ export const useRealEstateInputForm = (): ViewProps => {
             }
             console.error('データ保存エラー:', err);
             setError(message);
-            alert(`エラー: ${message}`);
+            alert(`${"サインアップ、またはサインインして下さい"}`);
         } finally {
             setLoading(false);
         }
