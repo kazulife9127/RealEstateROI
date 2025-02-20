@@ -1,10 +1,12 @@
 import React, { createContext, useState, ReactNode } from 'react';
-import { CashFlowInputData } from "@/types/SimulationData.ts";
+import { CashFlowInputData, CashFlowInputUnit } from "@/types/SimulationData.ts";
 
 type CashFlowContextType = {
     data: CashFlowInputData;
     setData: React.Dispatch<React.SetStateAction<CashFlowInputData>>;
     resetData: () => void;
+    expenseUnit: CashFlowInputUnit;
+    setExpenseUnit: React.Dispatch<React.SetStateAction<CashFlowInputUnit>>;
 }
 
 export const CashFlowContext = createContext<CashFlowContextType | undefined>(undefined);
@@ -40,8 +42,10 @@ export const CashFlowProvider: React.FC<Props> = ({ children }) => {
         });
     };
 
+    const [expenseUnit, setExpenseUnit] = useState<CashFlowInputUnit>('percentage');
+
     return (
-        <CashFlowContext.Provider value={{ data, setData, resetData }}>
+        <CashFlowContext.Provider value={{ data, setData, resetData, expenseUnit, setExpenseUnit }}>
             {children}
         </CashFlowContext.Provider>
     )

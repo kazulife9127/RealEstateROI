@@ -1,4 +1,4 @@
-// 収支試算の計算方法の中身を実装
+import { CashFlowInputUnit } from "@/types/SimulationData";
 
 /**
  * 家賃収入（年額）を計算する関数
@@ -14,15 +14,24 @@ export const calculateAnnualRentIncome = (expectedAnnualIncome: number): number 
  * @param annualRentIncome -> 家賃収入（円）
  * @param vacancyRate -> 空室率（%）
  * @param expenseRate -> 諸経費率（%）
+ * @param expenseUnit 諸経費の単位。'percentage'なら%として計算、'yen'なら円として計算
  * @returns 総諸経費（円）
  */
 export const calculateTotalExpenses = (
     annualRentIncome: number,
     vacancyRate: number,
-    expenseRate: number
+    expenseRate: number,
+    expenseUnit: CashFlowInputUnit
 ): number => {
-    const totalExpensesRate = vacancyRate + expenseRate;
-    return annualRentIncome * totalExpensesRate / 100;
+    if (expenseUnit === 'yen') {
+        // yenの場合：家賃収入×空室率/100 ＋ 入力された諸経費（円）
+        return (annualRentIncome * vacancyRate) / 100 + expenseRate * 10000;
+    } else {
+        // percentageの場合：家賃収入×(空室率＋諸経費率)/100
+        const totalExpensesRate = vacancyRate + expenseRate;
+        return annualRentIncome * totalExpensesRate / 100;
+    }
+    
 };
 
 /**
@@ -161,15 +170,23 @@ export const calculateMonthlyRentIncome = (expectedAnnualIncome: number): number
  * @param monthlyRentIncome -> 月額家賃収入（円）
  * @param vacancyRate -> 空室率（%）
  * @param expenseRate -> 諸経費率（%）
+ * @param expenseUnit 諸経費の単位。'percentage'なら%として計算、'yen'なら円として計算
  * @returns 月額諸経費（円）
  */
 export const calculateMonthlyExpenses = (
     monthlyRentIncome: number,
     vacancyRate: number,
-    expenseRate: number
+    expenseRate: number,
+    expenseUnit: CashFlowInputUnit
 ): number => {
-    const totalExpensesRate = vacancyRate + expenseRate;
-    return monthlyRentIncome * totalExpensesRate / 100;
+    if (expenseUnit === 'yen') {
+        // 円の場合：家賃収入×空室率/100 ＋ 入力された諸経費（円）
+        return (monthlyRentIncome * vacancyRate) / 100 + (expenseRate * 10000) / 12;
+    } else {
+        // percentageの場合：家賃収入×(空室率＋諸経費率)/100
+        const totalExpensesRate = vacancyRate + expenseRate;
+        return monthlyRentIncome * totalExpensesRate / 100;
+    }
 };
 
 /**

@@ -1,4 +1,6 @@
 import React from 'react';
+import { CashFlowInputData, CashFlowInputUnit } from "@/types/SimulationData.ts";
+
 
 import {
     PaperStyled,
@@ -10,35 +12,34 @@ import {
     TitleTypographyStyled,
     MenuItemStyled,
     FormHelperTextStyled,
-    
+    RadioStyled,
+    RadioGroupStyled,
+    FormControlStyled,
+    FormLabelStyled,
+    FormControlLabelStyled
 } from "./CashFlowInputForm.style";
 
 export type Props = {
-    data: {
-        propertyPrice: number | '';
-        expectedAnnualIncome: number | '';
-        vacancyRate: number | '';
-        expenseRate: number | '';
-        ownCapital: number | '';
-        loanAmount: number | '';
-        loanTerm: number | '';
-        interestRate: number | '';
-        repaymentMethod: 'equalPrincipalAndInterest';
-    };
-    handleChange: (field: keyof Props['data'], value: number
+    data: CashFlowInputData
+    handleChange: (field: keyof CashFlowInputData, value: number
         | ''
         | 'equalPrincipalAndInterest'
     ) => void;
     handleReset: () => void;
-    //handleSimulation: () => void;
+    expenseRateChange: (event: React.ChangeEvent<HTMLInputElement>) => void;
+    expenseUnit: CashFlowInputUnit;
+
 }
 
 export const CashFlowInputFormView: React.FC<Props> = ({
     data,
     handleChange,
     handleReset,
-    //handleSimulation
+    expenseRateChange,
+    expenseUnit
 }) => {
+
+
     return (
         <>
             <PaperStyled>
@@ -112,11 +113,30 @@ export const CashFlowInputFormView: React.FC<Props> = ({
                     </Grid2Styled>
                     <FormHelperTextStyled>※想定される空室の割合を入れます。10戸のアパートで常に1戸空くと10％</FormHelperTextStyled>
                 </Grid2Styled>
+                
+                <FormControlStyled>
+                    <FormLabelStyled>諸経費単位を選択して下さい。</FormLabelStyled>
+                    <RadioGroupStyled
+                        row
+                        value={expenseUnit}
+                        onChange={expenseRateChange}
+                    >
+                        <FormControlLabelStyled 
+                            value="percentage" 
+                            control={<RadioStyled />} 
+                            label="%" 
+                        />
+                        <FormControlLabelStyled 
+                            value="yen" 
+                            control={<RadioStyled />} 
+                            label="円" 
+                        />
+                    </RadioGroupStyled>
 
-                <Grid2Styled container alignItems="center" spacing={2}>
+                    <Grid2Styled container alignItems="center" spacing={2}>
                     <Grid2Styled size={{ lg: 3 }}>
                         <TextFieldStyled
-                            label="諸経費率"
+                            label="諸経費"
                             variant="outlined"
                             margin="normal"
                             type="number"
@@ -128,7 +148,9 @@ export const CashFlowInputFormView: React.FC<Props> = ({
                                     min: 0
                                 },
                                 input: {
-                                    endAdornment: <InputAdornmentStyled position="end">%</InputAdornmentStyled>,
+                                    endAdornment: <InputAdornmentStyled position="end">
+                                        {expenseUnit == 'percentage' ? '%' : '万円'}
+                                    </InputAdornmentStyled>,
                                 },
                             }}
                         />
@@ -140,6 +162,9 @@ export const CashFlowInputFormView: React.FC<Props> = ({
                         </FormHelperTextStyled>
                     </Grid2Styled>
                 </Grid2Styled>
+                </FormControlStyled>
+                
+                
 
                 <TypographyStyled variant='h6'>資金計画</TypographyStyled>
                 <Grid2Styled container alignItems="center" spacing={2}>

@@ -1,6 +1,6 @@
 // CalculateRepaymentGraph.ts
 
-import { CashFlowData, TimeSeriesData } from "@/types/SimulationData";
+import { CashFlowData, TimeSeriesData, CashFlowInputUnit } from "@/types/SimulationData";
 import { CalculateRepaymentSchedule, RepaymentSchedule } from './CalculateRepaymentSchedule';
 import {
     calculateAnnualRentIncome,
@@ -24,15 +24,16 @@ import {
 export const CalculateRepaymentGraph = (
     data: CashFlowData,
     maxPeriod: number,
-    periodType: 'year' | 'month'
+    periodType: 'year' | 'month',
+    expenseUnit: CashFlowInputUnit
 ): TimeSeriesData[] => {
     // 家賃収入を計算
     const annualRentIncome = calculateAnnualRentIncome(data.expectedAnnualIncome);
     const monthlyRentIncome = calculateMonthlyRentIncome(data.expectedAnnualIncome);
 
     // 控除・諸経費を計算
-    const totalAnnualExpenses = calculateTotalExpenses(annualRentIncome, data.vacancyRate, data.expenseRate);
-    const totalMonthlyExpenses = calculateMonthlyExpenses(monthlyRentIncome, data.vacancyRate, data.expenseRate);
+    const totalAnnualExpenses = calculateTotalExpenses(annualRentIncome, data.vacancyRate, data.expenseRate, expenseUnit);
+    const totalMonthlyExpenses = calculateMonthlyExpenses(monthlyRentIncome, data.vacancyRate, data.expenseRate, expenseUnit);
 
     // 物件価格（円）と自己資金（円）を計算
     // const propertyPrice = data.propertyPrice * 10000;

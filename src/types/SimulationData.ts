@@ -1,6 +1,3 @@
-// src/types/SimulationData.ts
-
-
 export type CashFlowInputData = {
     propertyPrice: number | '';
     expectedAnnualIncome: number | '';
@@ -12,6 +9,7 @@ export type CashFlowInputData = {
     interestRate: number | '';
     repaymentMethod: 'equalPrincipalAndInterest';
 }
+export type CashFlowInputUnit = 'percentage' | 'yen';
 
 export type CashFlowData = {
     propertyPrice: number;         // 物件価格（万円）

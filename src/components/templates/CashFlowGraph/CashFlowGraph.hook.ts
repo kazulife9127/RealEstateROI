@@ -7,13 +7,14 @@ import { convertInputToData } from "@/hooks/RoiSimulation/Formatting.ts";
 import { CashFlowData, TimeSeriesData } from '@/types/SimulationData.ts';
 import { CashFlowGraphProps, Period } from '@/types/GraphData.ts';
 
-export const useCashFlowGraph = (): CashFlowGraphProps => {
+export const useCashFlowGraph = (
+): CashFlowGraphProps => {
     const context = useContext(CashFlowContext);
     if (!context) {
         throw new Error("CashFlowContext が見つかりません");
     }
 
-    const { data } = context;
+    const { data, expenseUnit } = context;
 
     const [selectedPeriod, setSelectedPeriod] = useState<Period>('year');
     const [selectedValue, setSelectedValue] = useState<number>(selectedPeriod === 'year' ? 35 : 420); // 初期値を設定
@@ -43,7 +44,12 @@ export const useCashFlowGraph = (): CashFlowGraphProps => {
         const maxPeriod = selectedValue;
 
         // グラフ用の返済計算を実行
-        const timeSeriesData: TimeSeriesData[] = CalculateRepaymentGraph(cashFlowData, maxPeriod, selectedPeriod);
+        const timeSeriesData: TimeSeriesData[] = CalculateRepaymentGraph(
+            cashFlowData, 
+            maxPeriod, 
+            selectedPeriod, 
+            expenseUnit
+        );
 
         // 詳細データをグラフに渡す
         return timeSeriesData.map(item => ({
@@ -56,7 +62,7 @@ export const useCashFlowGraph = (): CashFlowGraphProps => {
             principalPaid: item.principalPaid,
             interestPaid: item.interestPaid,
         }));
-    }, [data, selectedPeriod, selectedValue]);
+    }, [data, selectedPeriod, selectedValue, expenseUnit]);
 
     return {
         data: graphData,
