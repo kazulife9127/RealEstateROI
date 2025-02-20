@@ -1,6 +1,6 @@
 // CalculateRepaymentResult.ts
 
-import { CashFlowData, CalculatedResult } from "@/types/SimulationData";
+import { CashFlowData, CalculatedResult, CashFlowInputUnit } from "@/types/SimulationData";
 import {
     calculateAnnualRentIncome,
     calculateTotalExpenses,
@@ -20,13 +20,14 @@ import {
  */
 export const CalculateRepaymentResult = (
     data: CashFlowData,
+    expenseUnit: CashFlowInputUnit
 ): CalculatedResult => {
     // 家賃収入（年額）を計算
     const annualRentIncome = calculateAnnualRentIncome(data.expectedAnnualIncome);
 
     // 控除・諸経費（年額）を計算
-    const totalExpenses = calculateTotalExpenses(annualRentIncome, data.vacancyRate, data.expenseRate);
-
+    const totalExpenses = calculateTotalExpenses(annualRentIncome, data.vacancyRate, data.expenseRate, expenseUnit);
+    
     // 物件価格（円）と自己資金（円）を計算
     const propertyPrice = data.propertyPrice * 10000;
     const ownCapital = data.ownCapital * 10000;

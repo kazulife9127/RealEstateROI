@@ -1,6 +1,6 @@
 import { useContext, useEffect } from 'react';
 import { CashFlowContext } from '../CashFlowContext.tsx';
-import { CashFlowInputData } from '@/types/SimulationData.ts'
+import { CashFlowInputData, CashFlowInputUnit } from '@/types/SimulationData.ts'
 
 export const useCashFlowInputForm = () => {
     const context = useContext(CashFlowContext);
@@ -8,7 +8,7 @@ export const useCashFlowInputForm = () => {
         throw new Error();
     }
 
-    const { data, setData, resetData } = context;
+    const { data, setData, resetData, expenseUnit, setExpenseUnit } = context;
 
     // ★ localStorageのキー名を定義
     const LOCAL_STORAGE_KEY = 'cashFlowInputData';
@@ -44,15 +44,19 @@ export const useCashFlowInputForm = () => {
         localStorage.removeItem(LOCAL_STORAGE_KEY);
     }
 
-    // const handleSimulation = () => {
-    //     console.log(data);
-    // }
+    // 諸経費の入力の単位を変更する
+    const expenseRateChange = (event: React.ChangeEvent<HTMLInputElement>) => {
+        const unit = event.target.value as CashFlowInputUnit;
+        setExpenseUnit(unit);
+    };
+
 
     return {
         data,
         handleChange,
         handleReset,
-        //handleSimulation
+        expenseRateChange,
+        expenseUnit
     }
     
 }

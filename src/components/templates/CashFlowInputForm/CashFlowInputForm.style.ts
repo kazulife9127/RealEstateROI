@@ -8,7 +8,13 @@ import {
   InputAdornment,
   Button,
   MenuItem,
-  FormHelperText
+  FormHelperText,
+  Radio,
+  RadioGroup,
+  FormControlLabel,
+  FormControl,
+  FormLabel
+  
 } from "@mui/material";
 
 export const TitleTypographyStyled = styled(Typography)(({ theme }) => ({
@@ -16,8 +22,8 @@ export const TitleTypographyStyled = styled(Typography)(({ theme }) => ({
   marginBottom: theme.spacing(3), // 下に余白を追加
 }));
 
-export const TypographyStyled = styled(Typography)(({}) => ({
-    
+export const TypographyStyled = styled(Typography)(({theme}) => ({
+  marginTop: theme.spacing(2),
 }));
 
 export const PaperStyled = styled(Paper)(({ theme }) => ({
@@ -48,6 +54,18 @@ export const MenuItemStyled = styled(MenuItem)(({  }) => ({
 }));
 
 export const FormHelperTextStyled = styled(FormHelperText)(({  }) => ({
+}));
+
+export const RadioStyled = styled(Radio)(({  }) => ({
+}));
+export const RadioGroupStyled = styled(RadioGroup)(({  }) => ({
+}));
+export const FormControlStyled = styled(FormControl)(({  }) => ({
+}));
+export const FormLabelStyled = styled(FormLabel)(({theme}) => ({
+  marginTop: theme.spacing(2),
+}));
+export const FormControlLabelStyled = styled(FormControlLabel)(({  }) => ({
 }));
 
 

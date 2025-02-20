@@ -93,7 +93,7 @@ export const CashFlowResultView: React.FC<Props> = ({
                         {formatCurrency(result.totalExpenses)}
                     </ResultTypographyStyled>
                 </Grid2Styled>
-                <FormHelperTextStyled>※④家賃収入(年額) × ( 空室率 ＋ 諸経費率 )</FormHelperTextStyled>
+                <FormHelperTextStyled>※④家賃収入(年額) × ( 空室率 ＋ 諸経費 )</FormHelperTextStyled>
             </Grid2Styled>
 
             {/* ⑥年間支出 */}

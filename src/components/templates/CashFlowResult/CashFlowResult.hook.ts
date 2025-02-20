@@ -6,13 +6,14 @@ import { CalculateRepaymentResult } from "@/hooks/RoiSimulation/CalculateRepayme
 import { CalculatedResult, CashFlowData } from "@/types/SimulationData.ts";
 import { convertInputToData } from "@/hooks/RoiSimulation/Formatting.ts";
 
-export const useCashFlowResult = (): CalculatedResult => {
+export const useCashFlowResult = (
+): CalculatedResult => {
     const context = useContext(CashFlowContext);
     if (!context) {
         throw new Error("CashFlowContext が見つかりません");
     }
 
-    const { data } = context;
+    const { data, expenseUnit } = context;
 
     const result = useMemo<CalculatedResult>(() => {
         const fieldsFilled = Object.values(data).every(value => value !== '');
@@ -35,8 +36,8 @@ export const useCashFlowResult = (): CalculatedResult => {
         }
         const cashFlowData: CashFlowData = convertInputToData(data);
 
-        return CalculateRepaymentResult(cashFlowData); // 残高を初期化
-    }, [data]);
+        return CalculateRepaymentResult(cashFlowData, expenseUnit); // 残高を初期化
+    }, [data, expenseUnit]);
 
     return result;
 }
