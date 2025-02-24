@@ -50,7 +50,7 @@ export const HeaderView: React.FC<Props> = ({
           <MenuIcon />
         </MenuButtonStyled>
         <TitleStyled textAlign="left" variant="h6">
-          不動産投資収益率 シュミレーション
+        不動産投資収益率シミュレーション
         </TitleStyled>
         <AuthButton/>
       </ToolbarStyled>
