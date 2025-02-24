@@ -29,7 +29,7 @@ export const CashFlowResultView: React.FC<Props> = ({
 }) => {
     return (
         <PaperStyled>
-            <TitleTypographyStyled variant='h6'>シュミレーション結果</TitleTypographyStyled>
+            <TitleTypographyStyled variant='h6'>シュミレーション結果(初年時)</TitleTypographyStyled>
             
             {/* ①返済額（月額） */}
             <Grid2Styled container alignItems="center" spacing={2}>
